@@ -56,10 +56,10 @@ input:-webkit-autofill,input:-webkit-autofill:focus,textarea:-webkit-autofill{-w
       </div>
     </sc-if>
     <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
-      <form onSubmit="{{ submit }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
+      <form onSubmit="{{ submit }}" action="https://formspree.io/f/xljjzooy" method="POST" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
         <sc-for list="{{ fields }}" as="f" hint-placeholder-count="5">
           <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600"><span>{{ f.label }} <span style="color:#A33A2B">*</span></span>
-            <input type="{{ f.type }}" required="required" style="height:50px;border:1px solid #CFC2A9;background:#F3EBDD;padding:0 14px;font:400 15px 'Instrument Sans',sans-serif;color:#253458;outline:none;-webkit-appearance:none;appearance:none;border-radius:0"></input>
+            <input type="{{ f.type }}" name="{{ f.name }}" autocomplete="{{ f.ac }}" required="required" style="height:50px;border:1px solid #CFC2A9;background:#F3EBDD;padding:0 14px;font:400 15px 'Instrument Sans',sans-serif;color:#253458;outline:none;-webkit-appearance:none;appearance:none;border-radius:0"></input>
           </label>
         </sc-for>
         <fieldset style="grid-column:1/-1;border:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px">
@@ -74,9 +74,13 @@ input:-webkit-autofill,input:-webkit-autofill:focus,textarea:-webkit-autofill{-w
           </sc-if>
         </fieldset>
         <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600">Your Message
-          <textarea rows="5" style="border:1px solid #CFC2A9;background:#F3EBDD;padding:14px;font:400 15px 'Instrument Sans',sans-serif;color:#253458;outline:none;-webkit-appearance:none;appearance:none;border-radius:0;resize:vertical"></textarea>
+          <textarea name="message" rows="5" style="border:1px solid #CFC2A9;background:#F3EBDD;padding:14px;font:400 15px 'Instrument Sans',sans-serif;color:#253458;outline:none;-webkit-appearance:none;appearance:none;border-radius:0;resize:vertical"></textarea>
         </label>
-        <button type="submit" style="grid-column:1/-1;justify-self:start;background:#253458;color:#F3EBDD;border:none;padding:16px 32px;font:600 16px 'Instrument Sans',sans-serif;cursor:pointer" style-hover="background:#1a2541">Send your message</button>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"></input>
+        <sc-if value="{{ sendError }}" hint-placeholder-val="{{ false }}">
+          <p role="alert" style="grid-column:1/-1;font-size:14px;font-weight:600;line-height:1.6;color:#A33A2B">Something went wrong sending your message. Please try again, call 313-326-9870, or email dbrown@co-opconsulting.com.</p>
+        </sc-if>
+        <button type="submit" disabled="{{ sending }}" style="grid-column:1/-1;justify-self:start;background:#253458;color:#F3EBDD;border:none;padding:16px 32px;font:600 16px 'Instrument Sans',sans-serif;cursor:pointer;opacity:{{ sendOpacity }}" style-hover="background:#1a2541">{{ submitLabel }}</button>
       </form>
     </sc-if>
   </div>
@@ -110,7 +114,9 @@ class Component extends DCLogic {
       services, areas, projects,
       areasLine: areas.join(' · '),
       quicklinks: [{label:'About Us',href:'#about'},{label:'Our Process',href:'#process'},{label:'FAQs',href:'#process'},{label:'Services',href:'#services'},{label:'Portfolio',href:'#portfolio'},{label:'Contact Us',href:'#contact-us'}],
-      fields: [{label:'Full Name',type:'text'},{label:'Email',type:'email'},{label:'Phone',type:'tel'},{label:'Company',type:'text'},{label:'Project Location',type:'text'}],
+      fields: [{label:'Full Name',type:'text',name:'name',ac:'name'},{label:'Email',type:'email',name:'email',ac:'email'},{label:'Phone',type:'tel',name:'phone',ac:'tel'},{label:'Company',type:'text',name:'company',ac:'organization'},{label:'Project Location',type:'text',name:'project_location',ac:'off'}],
+      sending: !!this.state.sending, sendOpacity: this.state.sending ? 0.6 : 1, sendError: !!this.state.sendError,
+      submitLabel: this.state.sending ? 'Sending…' : 'Send your message',
       serviceChips: [...services.map(s => s.title), 'Unsure / Other'].map(label => ({
         label, bg: p[label] ? '#253458' : '#F3EBDD', fg: p[label] ? '#F3EBDD' : '#253458', border: p[label] ? '#253458' : '#CFC2A9',
         toggle: () => this.setState(s => ({ picked: { ...s.picked, [label]: !s.picked[label] } }))
@@ -122,8 +128,26 @@ class Component extends DCLogic {
       closeMenu: () => this.setState({ menu: null }),
       sent: this.state.sent, notSent: !this.state.sent,
       chipError: !!this.state.chipError && !Object.values(p).some(Boolean),
-      submit: e => { e.preventDefault(); if (!Object.values(this.state.picked).some(Boolean)) { this.setState({ chipError: true }); return; } this.setState({ sent: true, chipError: false }); },
-      reset: () => this.setState({ sent: false, picked: {}, chipError: false })
+      submit: async e => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const chosen = Object.keys(this.state.picked).filter(k => this.state.picked[k]);
+        if (!chosen.length) { this.setState({ chipError: true }); return; }
+        if (this.state.sending) return;
+        const data = new FormData(form);
+        data.append('services', chosen.join(', '));
+        data.append('_subject', 'New website inquiry: ' + (data.get('name') || '') + (data.get('company') ? ' (' + data.get('company') + ')' : ''));
+        this.setState({ sending: true, sendError: false, chipError: false });
+        try {
+          const res = await fetch('https://formspree.io/f/xljjzooy', { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          form.reset();
+          this.setState({ sending: false, sent: true });
+        } catch (err) {
+          this.setState({ sending: false, sendError: true });
+        }
+      },
+      reset: () => this.setState({ sent: false, picked: {}, chipError: false, sendError: false })
     };
   }
 }
