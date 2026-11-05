@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script src="./reveal.js"></script>
+<style>
+body{margin:0;background:#FBF9F5;color:#253458;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#253458;text-decoration:underline;text-decoration-color:#C1A738;text-underline-offset:3px}
+a:hover{color:#1B2642;text-decoration-color:#253458}
+h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+</style>
+</helmet>
+
+<dc-import name="SiteHeader" style="position:fixed;top:0;left:0;right:0;z-index:50;display:block" hint-size="100%,104px"></dc-import>
+
+<section data-screen-label="Service Hero" style="background:#1B2642;color:#F3EBDD">
+  <div style="max-width:1240px;margin:0 auto;padding:176px 24px 104px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:56px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;font-family:'Instrument Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#ABB2C4">
+        <a href="index.html" style="color:#ABB2C4;text-decoration:none">Home</a><span>/</span>
+        <a href="index.html#services" style="color:#ABB2C4;text-decoration:none">Services</a><span>/</span>
+        <span style="color:#C1A738">{{ svc.title }}</span>
+      </div>
+      <h1 style="font-size:clamp(42px,5.2vw,72px);line-height:1.02;font-weight:700;letter-spacing:-0.01em;color:#F3EBDD">{{ svc.title }}</h1>
+      <p style="font-family:'Instrument Sans',sans-serif;font-size:19px;font-weight:600;line-height:1.45;color:#C1A738">{{ svc.tagline }}</p>
+      <p style="font-size:18px;line-height:1.65;color:#E4DCCB;max-width:560px">{{ svc.lead }}</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;padding-top:4px">
+        <a href="contact.html" style="background:#F3EBDD;color:#1B2642;padding:17px 30px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:#1B2642;color:#FBF9F5">Let's Work Together</a>
+        <a href="tel:3133269870" style="border:1px solid #6B7799;color:#F3EBDD;padding:16px 28px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-decoration:none">313-326-9870</a>
+      </div>
+    </div>
+    <div style="aspect-ratio:4/3;position:relative">
+      <image-slot id="{{ heroSlot }}" shape="rect" src="{{ heroSrc }}" placeholder="{{ heroPlaceholder }}"></image-slot>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Overview" style="padding:104px 0;border-bottom:none">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:64px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#7A671B">Overview</span>
+      <h2 style="font-size:clamp(28px,3vw,40px);line-height:1.15;font-weight:700">{{ svc.headline }}</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <sc-for list="{{ svc.overview }}" as="p" hint-placeholder-count="2">
+        <p style="font-size:17px;line-height:1.755;color:#4B5675">{{ p }}</p>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="What's Included" style="padding:104px 0;background:#F3EBDD;border-bottom:none">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;gap:48px">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:720px">
+      <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#7A671B">What's Included</span>
+      <h2 style="font-size:clamp(28px,3vw,40px);line-height:1.15;font-weight:700">{{ includedHeading }}</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:0 56px;border-bottom:1px solid #DDD1BC">
+      <sc-for list="{{ svc.offerings }}" as="o" hint-placeholder-count="6">
+        <div style="padding:32px 0;border-top:1px solid #DDD1BC;display:flex;flex-direction:column;gap:12px">
+          <span style="width:28px;height:1px;background:#C1A738;display:block"></span>
+          <h3 style="font-size:18px;font-weight:700;line-height:1.3">{{ o.t }}</h3>
+          <p style="font-size:16px;line-height:1.65;color:#4B5675">{{ o.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Our Approach" style="padding:104px 0;border-bottom:none">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;gap:48px">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:720px">
+      <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#7A671B">Our Approach</span>
+      <h2 style="font-size:clamp(28px,3vw,40px);line-height:1.15;font-weight:700">How we work with you</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:32px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:12px;border-top:1px solid #253458;padding-top:24px">
+          <span style="font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.12em;color:#7A671B">{{ s.n }}</span>
+          <h3 style="font-size:20px;font-weight:700">{{ s.t }}</h3>
+          <p style="font-size:16px;line-height:1.65;color:#4B5675">{{ s.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Related Services" style="padding:104px 0;background:#F3EBDD">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#7A671B">More Services</span>
+      <h2 style="font-size:clamp(28px,3vw,40px);line-height:1.15;font-weight:700">Explore our other services</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+      <sc-for list="{{ related }}" as="r" hint-placeholder-count="4">
+        <a href="{{ r.href }}" style="border-top:1px solid #253458;padding:24px 0;display:flex;flex-direction:column;gap:12px;text-decoration:none;color:#253458;transition:opacity .2s" style-hover="opacity:0.75">
+          <h3 style="font-size:18px;font-weight:700">{{ r.title }}</h3>
+          <p style="font-size:15px;line-height:1.6;color:#4B5675;flex:1">{{ r.tagline }}</p>
+          <span style="font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#253458">Learn More →</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA" style="background:#1B2642;color:#F3EBDD;padding:112px 0;border-bottom:1px solid #2C3A5E">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span style="font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#C1A738">Ready to get started?</span>
+      <h2 style="font-size:clamp(28px,3.4vw,44px);font-weight:700;letter-spacing:-0.01em">Let's talk about your next project.</h2>
+    </div>
+    <a href="contact.html" style="background:#F3EBDD;color:#1B2642;padding:17px 30px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:#FFFFFF;color:#1B2642">Contact Us</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;slug&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;program-management&quot;,&quot;project-financing&quot;,&quot;strategic-planning&quot;,&quot;development-services&quot;,&quot;infrastructure-management&quot;],&quot;default&quot;:&quot;program-management&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const SERVICES = {
+  'program-management': {
+    title: 'Program Management',
+    tagline: 'One strategy and one clear view across every project in your capital program.',
+    lead: 'We bring multiple projects under a single structure, with shared standards, a coordinated schedule, and reporting that shows exactly where your program stands.',
+    headline: 'Many projects, managed as one program.',
+    overview: [
+      'When an organization has several projects underway at once, managing them one at a time leads to duplicated effort, competing priorities, and budgets that are hard to track. Program management brings those projects together so decisions are made with the full picture in view.',
+      'Co-Op Consulting Group sets up the standards, schedules, and reporting your program runs on, then oversees each project against them. You get consistent delivery across every site and a clear answer when leadership asks where the money is going.'
+    ],
+    offerings: [
+      { t: 'Program setup and governance', d: 'Define roles, approval paths, and the standards every project follows.' },
+      { t: 'Master scheduling', d: 'Coordinate timelines across projects to manage sequencing, resources, and dependencies.' },
+      { t: 'Program budget and cost tracking', d: 'Track committed and forecast costs at both the project and program level.' },
+      { t: 'Team coordination', d: 'Manage design consultants and contractors across multiple contracts and sites.' },
+      { t: 'Risk management', d: 'Spot issues that cross project lines and resolve them before they spread.' },
+      { t: 'Executive reporting', d: 'Regular, plain-language updates for boards, leadership, and funding partners.' }
+    ],
+    steps: [
+      { t: 'Assess', d: 'Review your portfolio, goals, funding, and current processes.' },
+      { t: 'Structure', d: 'Establish governance, standards, a master schedule, and a budget baseline.' },
+      { t: 'Execute', d: 'Oversee each project against the program plan and manage changes as they arise.' },
+      { t: 'Report', d: 'Keep stakeholders informed and close out each project cleanly.' }
+    ]
+  },
+  'project-financing': {
+    title: 'Project Budgeting',
+    tagline: 'A budget that holds up, and the funding to back it.',
+    lead: 'We help owners build realistic budgets, align costs with the project schedule, and manage draws so money keeps pace with the work.',
+    headline: 'Strong projects start with a sound financial plan.',
+    overview: [
+      'Financing shapes every decision on a construction or development project, from scope to schedule. A budget built on weak assumptions or a funding plan with gaps can stall a project before it breaks ground.',
+      'We work with owners to build budgets grounded in real costs, identify funding sources that fit the project, and prepare the documentation lenders and investors expect. Once construction begins, we manage draws and financial reporting through completion.'
+    ],
+    offerings: [
+      { t: 'Budget development', d: 'Total project budgets that account for hard costs, soft costs, and contingency.' },
+      { t: 'Pro forma and cash flow modeling', d: 'Scenarios that show how timing, costs, and revenue affect project returns.' },
+      { t: 'Funding source strategy', d: 'Evaluate loans, bonds, grants, tax credits, and incentives to find the right mix.' },
+      { t: 'Lender and investor packages', d: 'Clear, complete documentation that supports your funding applications.' },
+      { t: 'Draw management', d: 'Review pay applications and coordinate draws with lenders and contractors.' },
+      { t: 'Financial reporting', d: 'Ongoing reports on budget, spend, and forecast for owners and funders.' }
+    ],
+    steps: [
+      { t: 'Define', d: 'Establish total project cost and your financial goals.' },
+      { t: 'Model', d: 'Build pro forma and cash flow scenarios to test the plan.' },
+      { t: 'Secure', d: 'Identify funding sources and prepare the packages to obtain them.' },
+      { t: 'Manage', d: 'Administer draws and report on financials through completion.' }
+    ]
+  },
+  'strategic-planning': {
+    title: 'Strategic Planning',
+    tagline: 'Know what to build, where, and why before you commit capital.',
+    lead: 'We help owners turn organizational goals into a defined project with a clear scope, a realistic budget, and the support of key stakeholders.',
+    headline: 'The best time to get a project right is before it starts.',
+    overview: [
+      'The most expensive mistakes on a project are often made before design begins: the wrong site, the wrong size, or a scope that does not match the budget. Strategic planning tests those decisions early, when changes cost the least.',
+      'We evaluate your needs, options, and constraints, then deliver recommendations you can act on. Whether you are planning a single facility or a multi-year capital program, you move forward with confidence in the direction.'
+    ],
+    offerings: [
+      { t: 'Needs assessments', d: 'Understand current conditions, future demand, and the gap between them.' },
+      { t: 'Feasibility studies', d: 'Test whether a project is viable from a cost, schedule, and market standpoint.' },
+      { t: 'Site evaluation and selection', d: 'Compare candidate sites against your requirements and budget.' },
+      { t: 'Capital planning', d: 'Prioritize investments and map them to available funding over time.' },
+      { t: 'Facility master planning', d: 'Long-range plans that guide how your facilities grow and change.' },
+      { t: 'Stakeholder engagement', d: 'Gather input and build alignment among the people the project affects.' }
+    ],
+    steps: [
+      { t: 'Listen', d: 'Learn your goals, constraints, and what success looks like.' },
+      { t: 'Analyze', d: 'Gather data and evaluate options, sites, and costs.' },
+      { t: 'Recommend', d: 'Present a clear direction with the reasoning behind it.' },
+      { t: 'Plan', d: 'Turn the recommendation into a scope, budget, and roadmap.' }
+    ]
+  },
+  'development-services': {
+    title: 'Development Services',
+    tagline: 'A guide from site selection to opening day.',
+    lead: 'We act as your development manager, handling due diligence, approvals, team selection, and construction oversight so your project moves forward with fewer delays.',
+    headline: 'Experienced development management, without building an in-house team.',
+    overview: [
+      'Development involves a long chain of decisions and approvals, and each one affects cost and schedule. For owners and developers without an in-house team, keeping that chain moving can become a full-time job.',
+      'Co-Op Consulting Group manages the process on your behalf. We coordinate consultants, agencies, and contractors, keep you informed at every milestone, and protect your interests from concept through occupancy.'
+    ],
+    offerings: [
+      { t: 'Site due diligence', d: 'Zoning, environmental, survey, and utility reviews before you commit.' },
+      { t: 'Entitlements and permitting', d: 'Manage rezoning, variances, and permits with local jurisdictions.' },
+      { t: 'Design team selection', d: 'Identify, interview, and contract the right architects and engineers.' },
+      { t: 'Contractor procurement', d: 'Run bidding or negotiation to select a qualified contractor at a fair price.' },
+      { t: 'Construction oversight', d: 'Monitor progress, quality, cost, and schedule on your behalf.' },
+      { t: 'Closeout and turnover', d: 'Punch lists, warranties, and documentation for a smooth move-in.' }
+    ],
+    steps: [
+      { t: 'Evaluate', d: 'Confirm the site and project concept are viable.' },
+      { t: 'Entitle', d: 'Secure the approvals and permits the project needs.' },
+      { t: 'Assemble', d: 'Select and contract the design and construction team.' },
+      { t: 'Deliver', d: 'Oversee construction through closeout and occupancy.' }
+    ]
+  },
+  'infrastructure-management': {
+    title: 'Infrastructure Management',
+    tagline: 'The roads, utilities, and site work your project depends on, managed start to finish.',
+    lead: 'We manage infrastructure scopes for public and private owners, coordinating agencies and contractors and keeping the work aligned with the rest of the project.',
+    headline: 'Infrastructure that keeps your project moving.',
+    overview: [
+      'Infrastructure work often involves public agencies, utility providers, and strict regulatory requirements. A delay with any one of them can hold up an entire project.',
+      'We oversee site and utility work from planning through inspection, track compliance, and keep every party coordinated. Our goal is infrastructure delivered on schedule so the rest of the project can proceed without interruption.'
+    ],
+    offerings: [
+      { t: 'Site and civil work oversight', d: 'Monitor grading, paving, stormwater, and other site work for quality and progress.' },
+      { t: 'Utility coordination', d: 'Work with water, sewer, power, and telecom providers on design and connections.' },
+      { t: 'Agency and permit coordination', d: 'Manage submittals and approvals with municipal and state agencies.' },
+      { t: 'Regulatory compliance', d: 'Track environmental, safety, and funding-related requirements.' },
+      { t: 'Contractor management', d: 'Review schedules, pay applications, and change orders.' },
+      { t: 'Inspection and documentation', d: 'Maintain records that support acceptance and closeout.' }
+    ],
+    steps: [
+      { t: 'Plan', d: 'Define scope, requirements, and the agencies involved.' },
+      { t: 'Coordinate', d: 'Align utilities, agencies, and contractors on schedule.' },
+      { t: 'Oversee', d: 'Monitor field work, cost, and compliance.' },
+      { t: 'Close out', d: 'Complete inspections, acceptance, and documentation.' }
+    ]
+  }
+};
+class Component extends DCLogic {
+  renderVals() {
+    let slug = this.props.slug;
+    if (!slug) { try { slug = new URLSearchParams(location.search).get('s'); } catch (e) {} }
+    if (!SERVICES[slug]) slug = 'program-management';
+    const svc = SERVICES[slug];
+    return {
+      svc,
+      heroSlot: 'svc-' + slug + '-hero',
+      heroSrc: ({ 'program-management': 'assets/photos/service-program-management-hero.webp', 'strategic-planning': 'assets/photos/service-strategic-planning-hero.webp' })[slug],
+      heroPlaceholder: svc.title + ' image',
+      includedHeading: 'Our ' + svc.title.toLowerCase() + ' services',
+      steps: svc.steps.map((s, i) => ({ ...s, n: '0' + (i + 1) })),
+      related: Object.keys(SERVICES).filter(k => k !== slug).map(k => ({ title: SERVICES[k].title, tagline: SERVICES[k].tagline, href: SERVICES[k].title.toLowerCase().replace(/ /g, '-') + '.html' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

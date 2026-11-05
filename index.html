@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<title>Co-Op Consulting Group | Atlanta Construction & Development Consulting</title>
+<link rel="icon" href="assets/coop-logo-320.png">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script src="./reveal.js"></script>
+<style>
+body{margin:0;background:#FBF9F5;color:#253458;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+a{color:#253458;text-decoration:underline;text-decoration-color:#C1A738;text-underline-offset:4px}
+a:hover{color:#1B2642;text-decoration-color:#253458}
+h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+</style>
+</helmet>
+
+<dc-import name="SiteHeader" style="position:fixed;top:0;left:0;right:0;z-index:50;display:block" hint-size="100%,104px"></dc-import>
+
+<section data-screen-label="Hero" style="position:relative;background:#1B2642;color:#F3EBDD;min-height:min(100vh,940px);display:flex;align-items:flex-end;overflow:hidden">
+  <div style="position:absolute;inset:0;z-index:0">
+    <sc-for list="{{ slides }}" as="s" hint-placeholder-count="1">
+      <div style="position:absolute;inset:0;opacity:{{ s.opacity }};z-index:{{ s.z }};pointer-events:{{ s.pe }};transform:{{ s.scale }};transition:opacity 1.4s ease,transform 9.5s ease-out">
+        <image-slot id="{{ s.id }}" shape="rect" src="{{ s.src }}" placeholder="{{ s.label }}"></image-slot>
+      </div>
+    </sc-for>
+  </div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,38,66,0.82) 0%,rgba(27,38,66,0.5) 42%,rgba(27,38,66,0.92) 100%);pointer-events:none;z-index:1"></div>
+  <div style="position:relative;z-index:2;max-width:1240px;width:100%;margin:0 auto;padding:220px 32px 112px;display:flex;flex-direction:column;gap:32px;pointer-events:none">
+    <div style="display:flex;align-items:center;gap:16px">
+      <span style="width:40px;height:1px;background:#C1A738;display:block"></span>
+      <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#C1A738">Atlanta, Georgia · Owner's Representation</span>
+    </div>
+    <h1 style="font-size:clamp(54px,7.2vw,112px);line-height:0.98;font-weight:400;letter-spacing:-0.01em;color:#F3EBDD">WE HELP<br>YOU BUILD.</h1>
+    <p style="font-size:clamp(18px,1.5vw,22px);line-height:1.6;color:#DCD6CA;max-width:680px">From the first budget to the final walkthrough, Co-Op Consulting Group represents owners on capital and development projects across Georgia, keeping every decision on schedule and on budget.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;pointer-events:auto;padding-top:4px">
+      <a href="contact.html" style="background:#F3EBDD;color:#1B2642;padding:17px 30px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:#FFFFFF;color:#1B2642">Discuss Your Project</a>
+      <a href="#services" style="border:1px solid rgba(243,235,221,0.5);color:#F3EBDD;padding:16px 29px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:rgba(243,235,221,0.1);color:#F3EBDD">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Stats" style="background:#253458;color:#F3EBDD;border-top:1px solid #34436A">
+  <div ref="{{ statsRef }}" style="max-width:1240px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+      <div style="padding:72px 32px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;border-left:{{ s.rule }}">
+        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:300;font-size:clamp(60px,6.4vw,96px);line-height:1;letter-spacing:-0.02em;color:#F3EBDD;font-variant-numeric:lining-nums tabular-nums">{{ s.value }}</span>
+        <span style="width:28px;height:1px;background:#C1A738;display:block"></span>
+        <span style="font-size:16px;letter-spacing:0.02em;color:#C9CEDB">{{ s.label }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="services" data-screen-label="Services" style="padding:128px 0;background:#FBF9F5">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:48px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7A671B">Our Services</span>
+        <h2 style="font-size:clamp(30px,3.4vw,46px);line-height:1.08;font-weight:700;letter-spacing:-0.005em">Five ways we keep your project on course.</h2>
+      </div>
+      <p style="font-size:17px;line-height:1.75;color:#4B5675">Bring us in for a single phase or for the life of the project. Every engagement is built around your budget, your schedule, and your goals.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:#DDD1BC;border:1px solid #DDD1BC">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+        <div style="background:#FBF9F5;padding:40px 34px;display:flex;flex-direction:column;gap:18px">
+          <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.12em;color:#7A671B">{{ s.num }}</span>
+          <h3 style="font-size:22px;font-weight:700;letter-spacing:0"><a href="{{ s.href }}" style="color:#253458;text-decoration:none">{{ s.title }}</a></h3>
+          <p style="font-size:16px;line-height:1.65;color:#4B5675">{{ s.desc }}</p>
+          <div style="display:flex;flex-direction:column;gap:8px;flex:1">
+            <sc-for list="{{ s.items }}" as="i" hint-placeholder-count="3">
+              <div style="font-size:14px;border-bottom:1px solid #E6DCC9;padding-bottom:8px;display:flex;gap:10px;align-items:center"><span style="width:6px;height:6px;background:#C1A738;flex:none"></span>{{ i }}</div>
+            </sc-for>
+          </div>
+          <a href="{{ s.href }}" style="align-self:flex-start;border:1px solid #253458;color:#253458;padding:12px 18px;font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none" style-hover="background:#253458;color:#F3EBDD">Learn More</a>
+        </div>
+      </sc-for>
+      <div style="background:#253458;color:#F3EBDD;padding:40px 34px;display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+        <h3 style="font-size:24px;font-weight:700;color:#F3EBDD">Not sure where to start?</h3>
+        <p style="font-size:16px;line-height:1.65;color:#E4DCCB">Tell us about the project and we'll recommend the right level of support.</p>
+        <a href="contact.html" style="align-self:flex-start;background:#F3EBDD;color:#1B2642;padding:14px 20px;font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none">Start a conversation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" data-screen-label="Portfolio" style="padding:128px 0;background:#F3EBDD">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:64px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7A671B">Portfolio</span>
+        <h2 style="font-size:clamp(34px,3.8vw,54px);line-height:1.1;font-weight:700;letter-spacing:-0.01em">Selected projects.</h2>
+      </div>
+      <p style="font-size:17px;line-height:1.75;color:#4B5675;max-width:520px">Hospitality, multifamily, civic, and K-12 education work across Atlanta and DeKalb County.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:56px 32px">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="7">
+        <div style="display:flex;flex-direction:column;gap:20px;transition:transform .35s ease" style-hover="transform:translateY(-6px)">
+          <div style="aspect-ratio:4/3;position:relative;overflow:hidden;transition:box-shadow .35s ease">
+            <image-slot id="{{ p.slot }}" shape="rect" src="{{ p.src }}" placeholder="{{ p.name }} photo"></image-slot>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #D6CCB8;padding-top:16px">
+            <h3 style="font-size:22px;line-height:1.25;font-weight:700">{{ p.name }}</h3>
+            <span style="font-family:'Instrument Sans',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#4B5675">{{ p.loc }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="about" data-screen-label="About Us" style="padding:128px 0 40px">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7A671B">About Us</span>
+      <h2 style="font-size:clamp(34px,3.8vw,54px);line-height:1.1;font-weight:700;letter-spacing:-0.01em">An owner's advocate, one decision at a time.</h2>
+      <p style="font-size:17px;line-height:1.75;color:#4B5675">As the founder and owner of Co-Op Consulting Group, I bring a collaborative, results-driven approach to the construction industry. With 15 years of hands-on experience navigating the complexities of project delivery, strategy, and execution, I established the firm to help developers, contractors, and owners build smarter and scale efficiently.</p>
+      <p style="font-size:17px;line-height:1.75;color:#4B5675">I am passionate about bridging the gap between high-level strategic planning and on-site realities, ensuring that every project optimizes efficiency, manages risk effectively, and maximizes profitability. Under my leadership, Co-Op Consulting Group stands as a dedicated partner to construction professionals, focused entirely on driving operational excellence and long-term business growth.</p>
+      <a href="contact.html" style="align-self:flex-start;margin-top:8px;border:1px solid #253458;color:#253458;padding:16px 29px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease,color .2s ease" style-hover="background:#253458;color:#FBF9F5">Meet the Principal</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:480px;width:100%;justify-self:end">
+      <div style="aspect-ratio:4/5;position:relative">
+        <image-slot id="owner-portrait" shape="rect" src="assets/photos/donte-brown-portrait.webp" placeholder="Owner portrait"></image-slot>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-top:1px solid #E2DACB;padding-top:16px">
+        <h3 style="font-size:24px;font-weight:700">Donte Brown</h3>
+        <span style="font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#7A671B">Founder &amp; Principal</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="areas" data-screen-label="Areas Served" style="background:#253458;color:#F3EBDD;padding:128px 0">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:80px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C1A738">Areas We Serve</span>
+      <h2 style="font-size:clamp(34px,3.8vw,54px);line-height:1.1;font-weight:700;letter-spacing:-0.01em;color:#F3EBDD">Based in Atlanta, working across metro Georgia.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));column-gap:32px;border-top:1px solid #3B4A70">
+        <sc-for list="{{ areas }}" as="a" hint-placeholder-count="14">
+          <div style="font-size:16px;padding:14px 0;border-bottom:1px solid #3B4A70;color:#E4DED2">{{ a }}</div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="aspect-ratio:1/1;position:relative">
+      <img src="assets/service-area-map.png" alt="Map of metro Atlanta counties served: Cobb, Forsyth, Fulton, Gwinnett and DeKalb" style="width:100%;height:100%;object-fit:cover;display:block"></img>
+    </div>
+  </div>
+</section>
+
+<section id="process" data-screen-label="Why Us" style="padding:128px 0">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:80px;align-items:center">
+    <div style="aspect-ratio:4/3;position:relative">
+      <img src="assets/coop-seal.png" alt="Co-Op Consulting Group seal" style="width:100%;height:100%;object-fit:contain;display:block"></img>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7A671B">Why Co-op</span>
+      <h2 style="font-size:clamp(34px,3.8vw,54px);line-height:1.1;font-weight:700;letter-spacing:-0.01em">Clear decisions, fewer surprises, and a partner in your corner.</h2>
+      <p style="font-size:17px;line-height:1.75;color:#4B5675">Our process is simple: understand what success looks like for you, build a plan to get there, and report honestly along the way. You always know where your project stands and what comes next.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;padding-top:8px">
+        <a href="#process" style="background:#253458;color:#FBF9F5;padding:17px 30px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:#1B2642;color:#FBF9F5">Our Process</a>
+        <a href="#process" style="border:1px solid #253458;color:#253458;padding:16px 29px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease,color .2s ease" style-hover="background:#253458;color:#FBF9F5">Read FAQs</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA" style="background:#1B2642;color:#F3EBDD;padding:112px 0;border-bottom:1px solid #2C3A5E">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:760px">
+      <div style="display:flex;align-items:center;gap:16px">
+        <span style="width:40px;height:1px;background:#C1A738;display:block"></span>
+        <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#C1A738">We Help You Build</span>
+      </div>
+      <h2 style="font-size:clamp(34px,4vw,58px);line-height:1.08;font-weight:700;letter-spacing:-0.01em;color:#F3EBDD">Let's talk about your next project.</h2>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <a href="contact.html" style="background:#F3EBDD;color:#1B2642;padding:17px 30px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:#FFFFFF;color:#1B2642">Contact Us</a>
+      <a href="tel:3133269870" style="border:1px solid rgba(243,235,221,0.5);color:#F3EBDD;padding:16px 29px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-decoration:none;transition:background .2s ease" style-hover="background:rgba(243,235,221,0.1);color:#F3EBDD">313-326-9870</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;slideCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4,&quot;min&quot;:1,&quot;max&quot;:8,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero carousel&quot;},&quot;pinSlide&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero carousel&quot;}}">
+class Component extends DCLogic {
+  state = { slide: 0, statsP: 0 };
+  statsRef = React.createRef();
+  componentDidMount() {
+    this.timer = setInterval(() => { if ((this.props.pinSlide ?? 'auto') === 'auto') this.setState(s => ({ slide: (s.slide + 1) % this.slideCount() })); }, 8000);
+    const el = this.statsRef.current;
+    if (!el || !('IntersectionObserver' in window)) { this.setState({ statsP: 1 }); return; }
+    this.io = new IntersectionObserver(es => { if (es[0].isIntersecting) { this.io.disconnect(); this.countUp(); } }, { threshold: 0.35 });
+    this.io.observe(el);
+  }
+  componentWillUnmount() { clearInterval(this.timer); this.io && this.io.disconnect(); cancelAnimationFrame(this.raf); }
+  countUp() {
+    const t0 = performance.now(), dur = 1800;
+    const step = t => { const k = Math.min(1, (t - t0) / dur); this.setState({ statsP: 1 - Math.pow(1 - k, 3) }); if (k < 1) this.raf = requestAnimationFrame(step); };
+    this.raf = requestAnimationFrame(step);
+  }
+  slideCount() { return Math.max(1, Math.min(8, this.props.slideCount ?? 4)); }
+  renderVals() {
+    const services = [
+      { num: '01', title: 'Program Management', href: 'program-management.html', desc: 'When you have more than one project in motion, we manage them as a single program with shared standards, coordinated schedules, and a clear view of total spend.', items: ['Capital program planning', 'Multi-project scheduling and budgets', 'Program-wide reporting'] },
+      { num: '02', title: 'Project Budgeting', href: 'project-budgeting.html', desc: 'We help you build a budget that holds up and assemble the funding behind it, then manage draws and lender requirements so money arrives when the work needs it.', items: ['Budgets and pro forma modeling', 'Funding and incentive strategy', 'Lender and draw coordination'] },
+      { num: '03', title: 'Strategic Planning', href: 'strategic-planning.html', desc: 'Before design begins, we test whether a project makes sense and define what it should be, so you commit capital with a clear scope and realistic expectations.', items: ['Needs assessments', 'Feasibility studies', 'Capital and master planning'] },
+      { num: '04', title: 'Development Services', href: 'development-services.html', desc: 'From site selection to opening day, we guide owners and developers through due diligence, approvals, team selection, and construction.', items: ['Site due diligence', 'Entitlements and permitting', 'Design and contractor procurement'] },
+      { num: '05', title: 'Infrastructure Management', href: 'infrastructure-management.html', desc: 'We oversee the roads, utilities, and site work that projects depend on, coordinating agencies, contractors, and compliance requirements from start to finish.', items: ['Site and utility work oversight', 'Regulatory compliance', 'Agency and stakeholder coordination'] }
+    ].map(s => ({ ...s, itemsLine: s.items.join('  ·  ') }));
+    const areas = ['Atlanta','Sandy Springs','Alpharetta','Marietta','Johns Creek','Roswell','Peachtree Corners','Brookhaven','Duluth','Lawrenceville','Cumming','Acworth','Milton','Decatur'];
+    const projects = [
+      { name: 'Mercedes-Benz Stadium', loc: 'Atlanta, GA', slot: 'proj-statefarm', src: 'assets/photos/portfolio-mercedes-benz-stadium.webp' },
+      { name: 'State Farm Park Center', loc: 'Atlanta, GA', slot: 'proj-statefarm-park', src: 'assets/photos/portfolio-state-farm-park-center.webp' },
+      { name: 'Reverb by Hard Rock Hotel', loc: 'Atlanta, GA', slot: 'proj-reverb', src: 'assets/photos/portfolio-reverb-hard-rock-hotel.webp' },
+      { name: 'Castleberry Park Apartments', loc: 'Atlanta, GA', slot: 'proj-castleberry', src: 'assets/photos/portfolio-castleberry-park-apartments.webp' },
+      { name: 'Salem Middle School', loc: 'DeKalb County, GA', slot: 'proj-salem', src: 'assets/photos/portfolio-salem-middle-school.webp' },
+      { name: 'Redan Middle School', loc: 'DeKalb County, GA', slot: 'proj-redan', src: 'assets/photos/portfolio-redan-middle-school.webp' },
+      { name: 'Livsey Elementary School', loc: 'DeKalb County, GA', slot: 'proj-livsey', src: 'assets/photos/portfolio-livsey-elementary-school.webp' }
+    ];
+    const HERO_SRC = "https://commons.wikimedia.org/wiki/Special:FilePath/State_Farm_%28Phillips%29_Arena%2C_Atlanta%2C_GA_%2847421278112%29.jpg?width=2400";
+    const n = this.slideCount(), pin = this.props.pinSlide ?? 'auto';
+    const cur = pin === 'auto' ? this.state.slide % n : Math.min(n, parseInt(pin, 10)) - 1;
+    const slides = Array.from({ length: n }, (_, i) => ({
+      id: i === 0 ? 'hero-image' : 'hero-slide-' + (i + 1),
+      src: 'assets/photos/hero-' + (i + 1) + '.webp',
+      label: 'Hero slide ' + (i + 1) + ' — drop photo',
+      opacity: i === cur ? 1 : 0, z: i === cur ? 2 : 1, pe: i === cur ? 'auto' : 'none',
+      scale: i === cur ? 'scale(1.06)' : 'scale(1)'
+    }));
+    const k = this.state.statsP;
+    const stats = [
+      { value: Math.round(28 * k) + '+', label: 'Years of Experience' },
+      { value: Math.round(200 * k) + '+', label: 'Projects Completed' },
+      { value: '$' + (3.7 * k).toFixed(1) + 'B+', label: 'In Construction Delivered' }
+    ].map((s, i) => ({ ...s, rule: i === 0 ? 'none' : '1px solid rgba(193,167,56,0.35)' }));
+    return { slides, stats, statsRef: this.statsRef, services, areas, projects };
+  }
+}
+</script>
+</body>
+</html>

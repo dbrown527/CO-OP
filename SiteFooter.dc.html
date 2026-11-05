@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</helmet>
+<footer style="background:#1B2642;color:#D9D3C4;padding:80px 0 32px;font-family:'Instrument Sans',sans-serif">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;gap:56px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:48px">
+      <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
+        <div style="display:flex;align-items:center;gap:12px">
+          <img src="assets/coop-logo-320.png" alt="Co-Op Consulting Group logo" style="width:96px;height:96px;display:block;flex:none"></img>
+          <span style="font-family:'Instrument Sans',sans-serif;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.02em;color:#F3EBDD">Co-Op Consulting Group</span>
+        </div>
+        <span style="font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.2em;color:#C1A738">WE HELP YOU BUILD.</span>
+        <p style="font-size:15px;line-height:1.7;margin:0">Owner-side construction and development consulting based in Atlanta, Georgia.</p>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.6">
+          <span>3133 Maple Drive, Ste 240<br>Atlanta, Georgia 30305</span>
+          <a href="tel:3133269870" style="color:#F3EBDD;text-decoration:none;font-weight:600">313-326-9870</a>
+          <a href="mailto:dbrown@co-opconsulting.com" style="color:#F3EBDD;text-decoration:none;font-weight:600">dbrown@co-opconsulting.com</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+        <h4 style="font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:-0.01em;text-transform:uppercase;color:#C1A738;margin:0 0 6px">Services</h4>
+        <sc-for list="{{ serviceLinks }}" as="l" hint-placeholder-count="5"><a href="{{ l.href }}" style="color:#D9D3C4;text-decoration:none" style-hover="color:#C1A738">{{ l.label }}</a></sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+        <h4 style="font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:-0.01em;text-transform:uppercase;color:#C1A738;margin:0 0 6px">Quicklinks</h4>
+        <sc-for list="{{ quicklinks }}" as="q" hint-placeholder-count="5"><a href="{{ q.href }}" style="color:#D9D3C4;text-decoration:none" style-hover="color:#C1A738">{{ q.label }}</a></sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+        <h4 style="font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:-0.01em;text-transform:uppercase;color:#C1A738;margin:0 0 6px">Areas Served</h4>
+        <p style="line-height:1.8;margin:0">{{ areasLine }}</p>
+      </div>
+    </div>
+    <div style="border-top:1px solid #2C3A5E;padding-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:#ABB2C4">
+      <span>Copyright © 2026 Co-Op Consulting Group</span>
+      <a href="#" style="color:#ABB2C4;text-decoration:none">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const H = 'index.html';
+    return {
+      serviceLinks: ['Program Management','Project Budgeting','Strategic Planning','Development Services','Infrastructure Management'].map(t => ({ label: t, href: t.toLowerCase().replace(/ /g, '-') + '.html' })),
+      quicklinks: [{label:'About Us',href:H+'#about'},{label:'Our Process',href:H+'#process'},{label:'FAQs',href:H+'#process'},{label:'Portfolio',href:H+'#portfolio'},{label:'Contact Us',href:'contact.html'}],
+      areasLine: ['Atlanta','Sandy Springs','Alpharetta','Marietta','Johns Creek','Roswell','Peachtree Corners','Brookhaven','Duluth','Lawrenceville','Cumming','Acworth','Milton','Decatur'].join(' · ')
+    };
+  }
+}
+</script>
+</body>
+</html>
