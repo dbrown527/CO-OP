@@ -9,17 +9,17 @@
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </helmet>
 <header style="background:{{ bg }};border-bottom:1px solid {{ border }};box-shadow:{{ shadow }};font-family:'Instrument Sans',sans-serif;transition:background .35s ease,box-shadow .35s ease,border-color .35s ease">
   <div style="max-width:1240px;margin:0 auto;padding:0 24px;height:{{ height }};display:flex;align-items:center;justify-content:space-between;gap:24px;transition:height .35s ease">
-    <a href="index.html" style="display:flex;align-items:center;gap:12px;color:{{ fg }};text-decoration:none;transition:color .35s ease">
+    <a href="/" style="display:flex;align-items:center;gap:12px;color:{{ fg }};text-decoration:none;transition:color .35s ease">
       <img src="{{ logoSrc }}" alt="Co-Op Consulting Group" style="height:{{ logoSize }};width:auto;display:block;transition:height .35s ease"></img>
       
     </a>
-    <nav style="display:flex;align-items:center;gap:34px;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;flex-wrap:wrap">
+    <nav onClick="{{ navClick }}" style="display:flex;align-items:center;gap:34px;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;flex-wrap:wrap">
       <div style="position:relative" onMouseEnter="{{ openAbout }}" onMouseLeave="{{ closeMenu }}">
-        <a href="index.html#about" style="color:{{ fg }};text-decoration:none;display:flex;gap:6px;align-items:center;padding:30px 0;transition:color .35s ease">About <span style="font-size:9px">▾</span></a>
+        <a href="/#about" style="color:{{ fg }};text-decoration:none;display:flex;gap:6px;align-items:center;padding:30px 0;transition:color .35s ease">About <span style="font-size:9px">▾</span></a>
         <sc-if value="{{ aboutOpen }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;top:100%;left:-24px;min-width:230px;background:#FBF9F5;border-top:2px solid #C1A738;padding:10px 0;display:flex;flex-direction:column;box-shadow:0 18px 40px rgba(20,28,50,0.18);z-index:30">
             <sc-for list="{{ aboutLinks }}" as="l" hint-placeholder-count="3">
@@ -29,7 +29,7 @@
         </sc-if>
       </div>
       <div style="position:relative" onMouseEnter="{{ openServices }}" onMouseLeave="{{ closeMenu }}">
-        <a href="index.html#services" style="color:{{ fg }};text-decoration:none;display:flex;gap:6px;align-items:center;padding:30px 0;transition:color .35s ease">Services <span style="font-size:9px">▾</span></a>
+        <a href="/#services" style="color:{{ fg }};text-decoration:none;display:flex;gap:6px;align-items:center;padding:30px 0;transition:color .35s ease">Services <span style="font-size:9px">▾</span></a>
         <sc-if value="{{ servicesOpen }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;top:100%;left:-24px;min-width:320px;background:#FBF9F5;border-top:2px solid #C1A738;padding:10px 0;display:flex;flex-direction:column;box-shadow:0 18px 40px rgba(20,28,50,0.18);z-index:30">
             <sc-for list="{{ serviceLinks }}" as="l" hint-placeholder-count="5">
@@ -38,7 +38,7 @@
           </div>
         </sc-if>
       </div>
-      <a href="index.html#portfolio" style="color:{{ fg }};text-decoration:none;transition:color .35s ease">Portfolio</a>
+      <a href="/#portfolio" style="color:{{ fg }};text-decoration:none;transition:color .35s ease">Portfolio</a>
       <a href="contact.html" style="background:{{ ctaBg }};color:{{ ctaFg }};border:1px solid {{ ctaBorder }};padding:13px 22px;text-decoration:none;transition:background .35s ease,color .35s ease,transform .25s ease,box-shadow .25s ease" style-hover="opacity:0.88">Contact</a>
     </nav>
   </div>
@@ -59,7 +59,7 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
   renderVals() {
-    const H = 'index.html';
+    const H = '/';
     const solid = this.state.y >= 1 || this.state.menu;
     const pop = this.state.y >= 2;
     return {
@@ -83,7 +83,8 @@ class Component extends DCLogic {
       servicesOpen: this.state.menu === 'services',
       openAbout: () => this.setState({ menu: 'about' }),
       openServices: () => this.setState({ menu: 'services' }),
-      closeMenu: () => this.setState({ menu: null })
+      closeMenu: () => this.setState({ menu: null }),
+      navClick: e => { const a = e.target.closest && e.target.closest('a'); if (!a) return; const u = new URL(a.href, location.href); if (u.pathname.replace(/\/index(\.html)?$/, '/') === location.pathname.replace(/\/index(\.html)?$/, '/') && u.hash) { const t = document.getElementById(u.hash.slice(1)); if (t) { e.preventDefault(); history.replaceState(null, '', u.hash); window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' }); this.setState({ menu: null }); } } }
     };
   }
 }

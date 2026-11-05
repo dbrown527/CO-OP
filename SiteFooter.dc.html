@@ -50,7 +50,7 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   renderVals() {
-    const H = 'index.html';
+    const H = '/';
     return {
       serviceLinks: ['Program Management','Project Budgeting','Strategic Planning','Development Services','Infrastructure Management'].map(t => ({ label: t, href: t.toLowerCase().replace(/ /g, '-') + '.html' })),
       quicklinks: [{label:'About Us',href:H+'#about'},{label:'Our Process',href:H+'#process'},{label:'FAQs',href:H+'#process'},{label:'Portfolio',href:H+'#portfolio'},{label:'Contact Us',href:'contact.html'}],

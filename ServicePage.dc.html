@@ -10,7 +10,6 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="./image-slot.js"></script>
 <script src="./reveal.js"></script>
 <style>
 body{margin:0;background:#FBF9F5;color:#253458;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -28,8 +27,8 @@ p{margin:0;text-wrap:pretty}
   <div style="max-width:1240px;margin:0 auto;padding:176px 24px 104px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:56px;align-items:center">
     <div style="display:flex;flex-direction:column;gap:24px">
       <div style="display:flex;gap:10px;flex-wrap:wrap;font-family:'Instrument Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#ABB2C4">
-        <a href="index.html" style="color:#ABB2C4;text-decoration:none">Home</a><span>/</span>
-        <a href="index.html#services" style="color:#ABB2C4;text-decoration:none">Services</a><span>/</span>
+        <a href="/" style="color:#ABB2C4;text-decoration:none">Home</a><span>/</span>
+        <a href="/#services" style="color:#ABB2C4;text-decoration:none">Services</a><span>/</span>
         <span style="color:#C1A738">{{ svc.title }}</span>
       </div>
       <h1 style="font-size:clamp(42px,5.2vw,72px);line-height:1.02;font-weight:700;letter-spacing:-0.01em;color:#F3EBDD">{{ svc.title }}</h1>
@@ -40,9 +39,11 @@ p{margin:0;text-wrap:pretty}
         <a href="tel:3133269870" style="border:1px solid #6B7799;color:#F3EBDD;padding:16px 28px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-decoration:none">313-326-9870</a>
       </div>
     </div>
-    <div style="aspect-ratio:4/3;position:relative">
-      <image-slot id="{{ heroSlot }}" shape="rect" src="{{ heroSrc }}" placeholder="{{ heroPlaceholder }}"></image-slot>
-    </div>
+    <sc-if value="{{ heroSrc }}" hint-placeholder-val="{{ true }}">
+      <div style="aspect-ratio:4/3;position:relative;overflow:hidden">
+        <img src="{{ heroSrc }}" alt="{{ heroPlaceholder }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></img>
+      </div>
+    </sc-if>
   </div>
 </section>
 

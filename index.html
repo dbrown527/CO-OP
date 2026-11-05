@@ -12,12 +12,12 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="./image-slot.js"></script>
 <script src="./reveal.js"></script>
 <style>
 body{margin:0;background:#FBF9F5;color:#253458;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:80px}
 a{color:#253458;text-decoration:underline;text-decoration-color:#C1A738;text-underline-offset:4px}
 a:hover{color:#1B2642;text-decoration-color:#253458}
 h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;margin:0;text-wrap:balance}
@@ -31,7 +31,7 @@ p{margin:0;text-wrap:pretty}
   <div style="position:absolute;inset:0;z-index:0">
     <sc-for list="{{ slides }}" as="s" hint-placeholder-count="1">
       <div style="position:absolute;inset:0;opacity:{{ s.opacity }};z-index:{{ s.z }};pointer-events:{{ s.pe }};transform:{{ s.scale }};transition:opacity 1.4s ease,transform 9.5s ease-out">
-        <image-slot id="{{ s.id }}" shape="rect" src="{{ s.src }}" placeholder="{{ s.label }}"></image-slot>
+        <img src="{{ s.src }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></img>
       </div>
     </sc-for>
   </div>
@@ -45,7 +45,7 @@ p{margin:0;text-wrap:pretty}
     <p style="font-size:clamp(18px,1.5vw,22px);line-height:1.6;color:#DCD6CA;max-width:680px">From the first budget to the final walkthrough, Co-Op Consulting Group represents owners on capital and development projects across Georgia, keeping every decision on schedule and on budget.</p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;pointer-events:auto;padding-top:4px">
       <a href="contact.html" style="background:#F3EBDD;color:#1B2642;padding:17px 30px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:#FFFFFF;color:#1B2642">Discuss Your Project</a>
-      <a href="#services" style="border:1px solid rgba(243,235,221,0.5);color:#F3EBDD;padding:16px 29px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:rgba(243,235,221,0.1);color:#F3EBDD">Our Services</a>
+      <a href="/#services" style="border:1px solid rgba(243,235,221,0.5);color:#F3EBDD;padding:16px 29px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:rgba(243,235,221,0.1);color:#F3EBDD">Our Services</a>
     </div>
   </div>
 </section>
@@ -107,7 +107,7 @@ p{margin:0;text-wrap:pretty}
       <sc-for list="{{ projects }}" as="p" hint-placeholder-count="7">
         <div style="display:flex;flex-direction:column;gap:20px;transition:transform .35s ease" style-hover="transform:translateY(-6px)">
           <div style="aspect-ratio:4/3;position:relative;overflow:hidden;transition:box-shadow .35s ease">
-            <image-slot id="{{ p.slot }}" shape="rect" src="{{ p.src }}" placeholder="{{ p.name }} photo"></image-slot>
+            <img src="{{ p.src }}" alt="{{ p.name }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></img>
           </div>
           <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #D6CCB8;padding-top:16px">
             <h3 style="font-size:22px;line-height:1.25;font-weight:700">{{ p.name }}</h3>
@@ -129,8 +129,8 @@ p{margin:0;text-wrap:pretty}
       <a href="contact.html" style="align-self:flex-start;margin-top:8px;border:1px solid #253458;color:#253458;padding:16px 29px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease,color .2s ease" style-hover="background:#253458;color:#FBF9F5">Meet the Principal</a>
     </div>
     <div style="display:flex;flex-direction:column;gap:20px;max-width:480px;width:100%;justify-self:end">
-      <div style="aspect-ratio:4/5;position:relative">
-        <image-slot id="owner-portrait" shape="rect" src="assets/photos/donte-brown-portrait.webp" placeholder="Owner portrait"></image-slot>
+      <div style="aspect-ratio:4/5;position:relative;overflow:hidden;background:#F3EBDD">
+        <img src="assets/photos/donte-brown-portrait.webp" alt="Donte Brown, Founder &amp; Principal" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block"></img>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-top:1px solid #E2DACB;padding-top:16px">
         <h3 style="font-size:24px;font-weight:700">Donte Brown</h3>
@@ -167,8 +167,8 @@ p{margin:0;text-wrap:pretty}
       <h2 style="font-size:clamp(34px,3.8vw,54px);line-height:1.1;font-weight:700;letter-spacing:-0.01em">Clear decisions, fewer surprises, and a partner in your corner.</h2>
       <p style="font-size:17px;line-height:1.75;color:#4B5675">Our process is simple: understand what success looks like for you, build a plan to get there, and report honestly along the way. You always know where your project stands and what comes next.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;padding-top:8px">
-        <a href="#process" style="background:#253458;color:#FBF9F5;padding:17px 30px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:#1B2642;color:#FBF9F5">Our Process</a>
-        <a href="#process" style="border:1px solid #253458;color:#253458;padding:16px 29px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease,color .2s ease" style-hover="background:#253458;color:#FBF9F5">Read FAQs</a>
+        <a href="/#process" style="background:#253458;color:#FBF9F5;padding:17px 30px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease" style-hover="background:#1B2642;color:#FBF9F5">Our Process</a>
+        <a href="/#process" style="border:1px solid #253458;color:#253458;padding:16px 29px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background .2s ease,color .2s ease" style-hover="background:#253458;color:#FBF9F5">Read FAQs</a>
       </div>
     </div>
   </div>
@@ -197,13 +197,20 @@ class Component extends DCLogic {
   state = { slide: 0, statsP: 0 };
   statsRef = React.createRef();
   componentDidMount() {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    this.onHash = () => this.scrollToHash(); window.addEventListener('hashchange', this.onHash); setTimeout(this.onHash, 50);
     this.timer = setInterval(() => { if ((this.props.pinSlide ?? 'auto') === 'auto') this.setState(s => ({ slide: (s.slide + 1) % this.slideCount() })); }, 8000);
     const el = this.statsRef.current;
     if (!el || !('IntersectionObserver' in window)) { this.setState({ statsP: 1 }); return; }
     this.io = new IntersectionObserver(es => { if (es[0].isIntersecting) { this.io.disconnect(); this.countUp(); } }, { threshold: 0.35 });
     this.io.observe(el);
   }
-  componentWillUnmount() { clearInterval(this.timer); this.io && this.io.disconnect(); cancelAnimationFrame(this.raf); }
+  scrollToHash() {
+    const id = decodeURIComponent((location.hash || '').slice(1)); if (!id) return;
+    let n = 0; clearInterval(this.hashT);
+    this.hashT = setInterval(() => { const t = document.getElementById(id); n++; if (t || n > 60) clearInterval(this.hashT); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 80, behavior: n > 1 ? 'smooth' : 'auto' }); }, 100);
+  }
+  componentWillUnmount() { clearInterval(this.timer); clearInterval(this.hashT); window.removeEventListener('hashchange', this.onHash); this.io && this.io.disconnect(); cancelAnimationFrame(this.raf); }
   countUp() {
     const t0 = performance.now(), dur = 1800;
     const step = t => { const k = Math.min(1, (t - t0) / dur); this.setState({ statsP: 1 - Math.pow(1 - k, 3) }); if (k < 1) this.raf = requestAnimationFrame(step); };
