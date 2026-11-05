@@ -259,7 +259,7 @@ class Component extends DCLogic {
     return {
       svc,
       heroSlot: 'svc-' + slug + '-hero',
-      heroSrc: ({ 'program-management': 'assets/photos/service-program-management-hero.webp', 'strategic-planning': 'assets/photos/service-strategic-planning-hero.webp', 'project-financing': 'assets/photos/service-project-budgeting-hero.webp' })[slug],
+      heroSrc: ({ 'program-management': 'assets/photos/service-program-management-hero.webp', 'strategic-planning': 'assets/photos/service-strategic-planning-hero.webp', 'project-financing': 'assets/photos/service-project-budgeting-hero.webp', 'development-services': 'assets/photos/service-development-services-hero.webp', 'infrastructure-management': 'assets/photos/service-infrastructure-management-hero.webp' })[slug],
       heroPlaceholder: svc.title + ' image',
       includedHeading: 'Our ' + svc.title.toLowerCase() + ' services',
       steps: svc.steps.map((s, i) => ({ ...s, n: '0' + (i + 1) })),
