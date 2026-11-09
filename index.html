@@ -247,8 +247,8 @@ class Component extends DCLogic {
     }));
     const k = this.state.statsP;
     const stats = [
-      { value: Math.round(28 * k) + '+', label: 'Years of Experience' },
-      { value: Math.round(200 * k) + '+', label: 'Projects Completed' },
+      { value: Math.round(20 * k) + '+', label: 'Years of Experience' },
+      { value: Math.round(100 * k) + '+', label: 'Projects Completed' },
       { value: '$' + (3.7 * k).toFixed(1) + 'B+', label: 'In Construction Delivered' }
     ].map((s, i) => ({ ...s, rule: i === 0 ? 'none' : '1px solid rgba(193,167,56,0.35)' }));
     return { slides, stats, statsRef: this.statsRef, services, areas, projects };
