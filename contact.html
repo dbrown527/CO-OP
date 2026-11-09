@@ -22,6 +22,7 @@ a:hover{color:#1B2642;text-decoration-color:#253458}
 h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;margin:0;text-wrap:balance}
 p{margin:0;text-wrap:pretty}
 input:-webkit-autofill,input:-webkit-autofill:focus,textarea:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #F3EBDD inset;-webkit-text-fill-color:#253458;transition:background-color 9999s}
+@media (max-width:900px){.coop-contact-info{position:static!important}}
 </style>
 </helmet>
 
@@ -39,7 +40,7 @@ input:-webkit-autofill,input:-webkit-autofill:focus,textarea:-webkit-autofill{-w
 
 <section id="contact-us" data-no-reveal="true" data-screen-label="Contact Form" style="padding:112px 0;background:#F3EBDD;border-top:none">
   <div style="max-width:1240px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:64px;align-items:start">
-    <div style="display:flex;flex-direction:column;gap:22px;position:sticky;top:110px">
+    <div class="coop-contact-info" style="display:flex;flex-direction:column;gap:22px;position:sticky;top:110px">
       <h2 style="font-size:clamp(26px,2.6vw,34px);line-height:1.15;font-weight:700">Get in touch</h2>
       <p style="font-size:17px;line-height:1.75;color:#4B5675">Send us a few details about your project and we'll follow up to schedule a conversation. Prefer to talk now? Call our Atlanta office.</p>
       <div style="border-top:2px solid #253458;padding-top:20px;display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:1.6">
